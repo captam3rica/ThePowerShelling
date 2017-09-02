@@ -1,12 +1,13 @@
+#Requires -RunAsAdministrator
+
 # Removes a device from SCCM console
 
 [cmdletbinding(SupportsShouldProcess=$True)]
 
-$site = "LB1:"
-
 # Load InputBox
 [void][system.reflection.assembly]::loadwithpartialname('Microsoft.VisualBasic')
 
+$site = [Microsoft.VisualBasic.interaction]::inputbox('Enter CM Site Code','Site?')
 # Run GUI input
 $computerName = [Microsoft.Visualbasic.interaction]::inputbox('Enter a computer name','Computer?')
 
