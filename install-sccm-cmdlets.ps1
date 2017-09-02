@@ -11,15 +11,15 @@ ToDo ...
 # Run PowerShell from console
 # Run command get-cmsite
 
-$sitepath = "LB1:"
+$sitepath = "[site code here]"
 
 write-host "
 ##################################
 ####    SETUP SCCM CMDLETS    ####
 ##################################
-"
+" -forgroundcolor yellow
 
-write-host "Cmdlet import about to begin ..."
+write-host "Cmdlet import about to begin ..." -foregroundcolor yellow
 start-sleep -s 3
 
 # Import SCCM cmdlets
@@ -31,13 +31,13 @@ import-module .\ConfigurationManager.psd1 -verbose
 # Will see errors because not connected to CM HD path. Will need to switch the path to the Config Manager site.
 
 write-host ""
-write-host "Testing the get-cmsite cmdlet. Receiving an error here is normal"
+write-host "Testing the get-cmsite cmdlet. Receiving an error here is normal" -foregroundcolor yellow
 write-host""
 
 start-sleep -s 3
 Get-CMSite
 
-write-host "Changing to the Site path $sitepath..."
+write-host "Changing to the Site path $sitepath ..." -foregroundcolor yellow
 write-host ""
 start-sleep -s 3
 # Change to SITE Code
@@ -66,12 +66,12 @@ write-host "
 ##################################
 #### UPDATE WIN PWRSHELL HELP ####
 ##################################
-"
+" -foregroundcolor yellow
 
-write-host "Updating PowerShell help ..."
+write-host "Updating PowerShell help ..." -foregroundcolor yellow
 write-host ""
 start-sleep -s 3
 update-help -module configurationmanager
 get-help get-cmsite
 
-write-host "Complete!!!"
+write-host "Complete!!!" -foregroundcolor yellow
