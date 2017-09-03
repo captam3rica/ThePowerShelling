@@ -7,8 +7,8 @@
 # Load InputBox
 [void][system.reflection.assembly]::loadwithpartialname('Microsoft.VisualBasic')
 
-$site = [Microsoft.VisualBasic.interaction]::inputbox('Enter CM Site Code','Site?')
 # Run GUI input
+$site = [Microsoft.VisualBasic.interaction]::inputbox('Enter CM Site Code','Site?')
 $computerName = [Microsoft.Visualbasic.interaction]::inputbox('Enter a computer name','Computer?')
 
 # Check to see if device exists in Console
@@ -21,12 +21,11 @@ $checkSCCM = [Boolean](get-cmdevice -name $computerName)
 
 If ($checkSCCM -eq $True) {
   (Remove-CMDevice -DeviceName $computerName)
-  write-output "$computerName was removed from SCCM"
+  write-host "$computerName was removed from SCCM" -foregroundcolor yellow
 }
 else {
-  write-host "$computerName not in SCCM"
+  write-host "$computerName not in SCCM" -foregroundcolor red
 }
 
 # Change location back to local machine
-
 set-location C: | out-null
