@@ -2,18 +2,21 @@
 
 # Removes a device from SCCM console
 
-[cmdletbinding(SupportsShouldProcess=$True)]
+#[cmdletbinding(SupportsShouldProcess=$True)]
 
 # Load InputBox
 [void][system.reflection.assembly]::loadwithpartialname('Microsoft.VisualBasic')
 
-# Run GUI input
-$site = [Microsoft.VisualBasic.interaction]::inputbox('Enter CM Site Code','Site?')
+$site = [Microsoft.VisualBasic.interaction]::inputbox('Enter CM Site Code','Site?') + ":"
+
+# Load InputBox
+[void][system.reflection.assembly]::loadwithpartialname('Microsoft.VisualBasic')
+
 $computerName = [Microsoft.Visualbasic.interaction]::inputbox('Enter a computer name','Computer?')
 
 # Check to see if device exists in Console
 cls
-write-host "Changing location to Site Server ..." -foregroundcolor yellow
+write-host "Changing location to $site ..." -foregroundcolor yellow
 set-location $site | out-null
 
 write-host "Looking for $computerName in the SCCM console ..." -foregroundcolor yellow
