@@ -1,8 +1,7 @@
 #Requires -RunAsAdministrator
 
 # Removes a device from SCCM console
-
-#[cmdletbinding(SupportsShouldProcess=$True)]
+#[CmdletBinding(SupportsShouldProcess=$true,ConfirmImpact="Medium")]
 
 # Load InputBox
 [void][system.reflection.assembly]::loadwithpartialname('Microsoft.VisualBasic')
@@ -23,7 +22,7 @@ write-host "Looking for $computerName in the SCCM console ..." -foregroundcolor 
 $checkSCCM = [Boolean](get-cmdevice -name $computerName)
 
 If ($checkSCCM -eq $True) {
-  (Remove-CMDevice -DeviceName $computerName)
+  (Remove-CMDevice -DeviceName $computerName -confirm)
   write-host "$computerName was removed from SCCM" -foregroundcolor yellow
 }
 else {
