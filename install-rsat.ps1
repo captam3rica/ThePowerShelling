@@ -29,7 +29,7 @@ If ($PSVersionTable.PSVersion -lt "3.0"){
   break
 }
 
-# Set powershell run-level
+# Set powershell run-level to Unrestricted
 $RunLevel = Get-ExecutionPolicy
 If ($RunLevel -ne "Unrestricted" -Or $RunLevel -ne "RemoteSigned"){
   write-host "Setting PowerShell run-level to Unrestricted ..." -foregroundcolor yellow
